@@ -15,7 +15,6 @@ import SplashScreen from "../page/SplashScreen/SplashScreen";
 const Router = () => {
     return (
         <BrowserRouter>
-            <Switch>
                 <Route exact path="/">
                     <SplashScreen />
                 </Route>
@@ -49,7 +48,6 @@ const Router = () => {
                 <Route>
                     <ErrorPage />
                 </Route>
-            </Switch>
         </BrowserRouter>
     )
 }
