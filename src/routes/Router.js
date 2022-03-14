@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes ,Route } from "react-router-dom";
 import AdressPage from "../page/AdressPage/AdressPage";
 import CartPage from "../page/CartPage/CartPage";
 import EditRecordPage from "../page/EditRecordPage/EditRecordPage";
@@ -15,6 +15,7 @@ import SplashScreen from "../page/SplashScreen/SplashScreen";
 const Router = () => {
     return (
         <BrowserRouter>
+            <Routes>
                 <Route exact path="/">
                     <SplashScreen />
                 </Route>
@@ -48,6 +49,7 @@ const Router = () => {
                 <Route>
                     <ErrorPage />
                 </Route>
+            </Routes>
         </BrowserRouter>
     )
 }
