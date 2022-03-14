@@ -16,7 +16,7 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/">
+                <Route exact path="/ ">
                     <SplashScreen />
                 </Route>
                 <Route exact path="/login">
