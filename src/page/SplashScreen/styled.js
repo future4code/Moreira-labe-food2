@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const SplashContainer = styled.div `
-    background-color: #e86e5a;
-    width: 100vw;
-    height: 100vh;
+    background-color: black;
+
+   
     display: flex;
     justify-content: center;
     align-items: center;

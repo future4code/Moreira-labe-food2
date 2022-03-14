@@ -1,27 +1,27 @@
-export const goToLogin = (history) => {
-    history.push("/login")
+export const goToLogin = (navigate) => {
+    navigate("/login")
 }
-export const goToFeed = (history) => {
-    history.push("/restaurantes")
+export const goToFeed = (navigate) => {
+    navigate("/restaurantes")
 }
-export const goToResult = (history, id) => {
-    history.push(`/restaurantes/${id}`)
+export const goToResult = (navigate, id) => {
+    navigate(`/restaurantes/${id}`)
 }
-export const goToAdress = (history) => {
-    history.push("/cadastro-endereco")
+export const goToAdress = (navigate) => {
+    navigate("/cadastro-endereco")
 }
-export const goToCar = (history) => {
-    history.push("/carrinho")
+export const goToCar = (navigate) => {
+    navigate("/carrinho")
 }
-export const goToProfile = (history) => {
-    history.push("/perfil")
+export const goToProfile = (navigate) => {
+    navigate("/perfil")
 }
-export const goToEdit = (history) => {
-    history.push("/edicao-cadastro")
+export const goToEdit = (navigate) => {
+    navigate("/edicao-cadastro")
 }
-export const goToSearch = (history) => {
-    history.push("/busca")
+export const goToSearch = (navigate) => {
+    navigate("/busca")
 }
-export const goToSingUp = (history) => {
-    history.push("/cadastro")
+export const goToSingUp = (navigate) => {
+    navigate("/cadastro")
 }

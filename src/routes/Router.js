@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter, Routes ,Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import AdressPage from "../page/AdressPage/AdressPage";
 import CartPage from "../page/CartPage/CartPage";
 import EditRecordPage from "../page/EditRecordPage/EditRecordPage";
@@ -12,46 +13,25 @@ import ProfilePage from "../page/ProfilePage/ProfilePage";
 import ErrorPage from "../page/ErrorPage/ErrorPage";
 import SplashScreen from "../page/SplashScreen/SplashScreen";
 
-const Router = () => {
+export default function RouterApp() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path="/">
-                    <SplashScreen />
-                </Route>
-                <Route exact path="/login">
-                    <LoginPage />
-                </Route>
-                <Route exact path="/restaurantes">
-                    <FeedPage />
-                </Route>
-                <Route exact path="/restaurantes/:id">
-                    <ResultPage />
-                </Route>
-                <Route exact path="/cadastro-endereco">
-                    <AdressPage />
-                </Route>
-                <Route exact path="/carrinho">
-                    <CartPage />
-                </Route>
-                <Route exact path="/perfil">
-                    <ProfilePage />
-                </Route>
-                <Route exact path="/edicao-cadastro">
-                    <EditRecordPage />
-                </Route>
-                <Route exact path="/busca">
-                    <SearchPage />
-                </Route>
-                <Route exact path="/cadastro">
-                    <SignUpPage />
-                </Route>
-                <Route>
-                    <ErrorPage />
-                </Route>
+              <Route  path="/" element={<SplashScreen/>} />
+              <Route  path="/cadastro" element={<SignUpPage/>} />
+              <Route  path="/login" element={<LoginPage/>} />
+              <Route  path="/restaurantes" element={<FeedPage/>} />
+              <Route  path="/restaurantes/:id" element={<ResultPage/>} />
+              <Route  path="/cadastro-endereco" element={<AdressPage/>} />
+              <Route  path="/carrinho" element={<CartPage/>} />
+              <Route  path="/perfil" element={<ProfilePage/>} />
+              <Route  path="/edicao-cadastro" element={<EditRecordPage/>} />
+              <Route  path="/busca" element={<SearchPage/>} />
+              <Route  path="*" element={<ErrorPage/>} />
             </Routes>
         </BrowserRouter>
     )
 }
 
-export default Router
+
+
