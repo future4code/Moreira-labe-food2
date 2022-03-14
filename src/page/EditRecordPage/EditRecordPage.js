@@ -1,13 +1,14 @@
 import React from "react"
 import useProtectedPage from "../../hooks/useProtectedPage"
-
-const EditRecordPage = () => {
+import {Link} from 'react-router-dom';
+export default function EditRecordPage() {
   useProtectedPage()
   return (
-    <div>
-      <p>EditRecordPage</p>
+    <div>endereço
+      
+    <Link to='/login'>Login</Link>
+
     </div>
   )
 }
 
-export default EditRecordPage

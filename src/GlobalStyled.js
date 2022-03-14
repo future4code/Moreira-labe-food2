@@ -1,16 +1,26 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
-    * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto';
-    font-size: 16px;
-  };
-  .text-link {
-    color: inherit;
-    text-decoration: inherit;
-  };
-`;
+export const GlobalStyled = createGlobalStyle `
+body {
+  margin: 0;
+  background-color: white;
+  font-family: Roboto, sans-serif;
+  width: 360px;
+  height: 640px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background-color: white;
+  box-shadow: 0 0 5px #0000000F;
+
+
+  
+  
+}
+* {
+  box-sizing: border-box;
+}
+`
+
