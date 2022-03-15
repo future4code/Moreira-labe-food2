@@ -7,14 +7,14 @@ import {Link} from 'react-router-dom';
 import useForm from "../../hooks/useForm";
 import {login} from "../../api";
 
-export default function Login({setRightButtonText}){
+export default function Login(){
 
   const [form, onChange, clear] = useForm({email: "", password: ""})
   const navigate = useNavigate()
 
   const onSubmitForm = (event) => {
       event.preventDefault()
-      login(form, clear, navigate, setRightButtonText)
+      login(form, clear, navigate)
       console.log(onSubmitForm)
   }
 

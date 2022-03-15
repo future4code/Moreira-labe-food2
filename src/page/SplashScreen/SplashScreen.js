@@ -1,5 +1,5 @@
 import React from "react"
-import logo from "../../images/logo-future-eats.png"
+import logo from "../../assets/logo-future-eats@3x.png"
 import { SplashContainer } from './styled';
 import { useNavigate } from 'react-router-dom'
 

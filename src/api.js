@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {BASE_URL} from "./constants/Urls";
-import {goToFeed }from "./routes/coordinator";
+import {goToFeed, goToAdress }from "./routes/coordinator";
+
 
 const token = localStorage.getItem('token');
 
@@ -11,24 +12,32 @@ export const api = axios.create({
   }
 });
 
-export const login = (form, clear, navigate, setRightButtonText) => {
+export const login = (form, clear, navigate) => {
   axios.post(`${BASE_URL}/login`, form)
   .then((res)=>{
       localStorage.setItem("token", res.data.token);
       clear();
-      setRightButtonText("Logout")
       goToFeed(navigate)
   })
   .catch((error)=>alert (error.response.data.message))
 }
 
-export const signup = (form, clear, navigate, setRightButtonText) => {
-  axios.post(`${BASE_URL}/users/signup`, form)
-  .then((res)=>{
-      localStorage.setItem("token", res.data.token);
+
+
+
+export const signup = (clear, form, navigate) => {
+  
+  const headers = {"Content-Type":"application/json"}
+  
+  axios.post(`${BASE_URL}/signup`, form, {headers})
+  .then((response)=>{
+     
       clear();
-      setRightButtonText("Logout")
-      goToFeed(navigate)
+      goToAdress(navigate)
+      console.log(response.data)
   })
-  .catch((error)=>alert("Usuário ou senha incorretos!"))
+  .catch((err)=> {
+    alert("Cadastro não realizado!")
+    console.log(err.response)
+})
 }
