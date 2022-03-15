@@ -3,7 +3,7 @@ import React from 'react'
 // import { useState } from 'react';
 // import axios from 'axios';
 
- import { Container } from './styled';
+
 // import { Header } from './styled';
 
 // import { goToAdress, goToLogin } from '../../routes/coordinator';
@@ -27,15 +27,13 @@ export default function SignUp({setRightButtonText}) {
   }
 
   return(
-    <Container>
-<div>endereço
+   
+    <div>endereço
       
       <Link to='/login'>Login</Link>
   
       </div>
-      ...
-    </Container>
-
+  
 
   )
 
