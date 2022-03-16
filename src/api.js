@@ -23,21 +23,39 @@ export const login = (form, clear, navigate) => {
 }
 
 
-
-
-export const signup = (clear, form, navigate) => {
-  
+export const signup = (body, clear, navigate) => {
   const headers = {"Content-Type":"application/json"}
-  
-  axios.post(`${BASE_URL}/signup`, form, {headers})
-  .then((response)=>{
-     
-      clear();
-      goToAdress(navigate)
-      console.log(response.data)
+
+  axios.post(`${BASE_URL}/signup`, body, headers)
+  .then((res)=>{localStorage.setItem("token", res.data.token)
+    clear()
+    alert("Usuario cadastrado com sucesso!")
+    goToAdress(navigate)
   })
-  .catch((err)=> {
-    alert("Cadastro não realizado!")
+  .catch((err)=>{
+    alert("E-mail ou CPF já cadastrados!")
     console.log(err.response)
-})
+  })
+      
+}
+
+export const putAdress = (body, clear, navigate) => {
+
+  axios.put(`${BASE_URL}/address`, body, {
+    headers: {
+      auth: localStorage.getItem("token")
+    }
+  })
+  .then((res)=>{
+    localStorage.setItem("token", res.data.token)
+    console.log(res.data)
+    alert("Endereço cadastrado com sucesso!")
+    clear()
+    goToFeed(navigate)
+  })
+  .catch((err)=>{
+    alert("Erro tente novamente!")
+    console.log(err.response)
+  })
+      
 }
