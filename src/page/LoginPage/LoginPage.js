@@ -1,11 +1,12 @@
 import React from "react"
-import axios from "axios";
-import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { goToFeed, goToSingUp, goToAdress } from "../../routes/coordinator"
 import {Link} from 'react-router-dom';
 import useForm from "../../hooks/useForm";
 import {login} from "../../api";
+import Button from "@mui/material/Button";
+import {Input,  DivForm, Container, Form, Title, P, Text} from './styled'
+import logo from '../../assets/logo/logo-future-eats-invert.png';
+
 
 export default function Login(){
 
@@ -19,23 +20,33 @@ export default function Login(){
   }
 
   return (
-    <div>endereço
-         <form onSubmit={onSubmitForm}>
-                        <input 
+    <Container>
+      <img src={logo}/>
+      <Title><P>Entrar</P></Title>
+      <DivForm>
+        <Form onSubmit={onSubmitForm}>
+                        <Input
                             name={"email"}
+                            placeholder="email@email.com"
                             value={form.email}
                             onChange={onChange}
                             label={"E-mail"}
+                            type="email"
                             variant={"outlined"}
+                            required
+                            id="outlined-required"
+                            defaultValue="E-mail"
                             fullWidth
                             margin={"dense"}
-                            required
-                            type="email"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />
                         
-                        <input 
+                        <Input 
                             name={"password"}
                             value={form.password}
+                            placeholder="Mínimo 6 caracteres"
                             onChange={onChange}
                             label={"Senha"}
                             variant={"outlined"}
@@ -43,21 +54,23 @@ export default function Login(){
                             margin={"dense"}
                             required
                             type="password"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />
                         
-                        <button 
+                        <Button className="butons"
                             type={"submit"}
-                            margin={"dense"}
-                            fullWidth 
-                            variant="contained">
+                            variant="contained"
+                            color="primary"
+                            >
                                 Entrar
-                        </button>
-
-                    </form>
-      
-    <Link to='/login'>Login</Link>
-
-    </div>
+                        </Button>
+                        
+          </Form>
+          <Text>Não possui cadastro? <Link to='/cadastro' className="link">Clique aqui</Link></Text>
+        </DivForm>
+    </Container>
 
 
   )

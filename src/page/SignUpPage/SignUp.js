@@ -3,7 +3,7 @@ import React, {useContext} from 'react'
 // import { useState } from 'react';
 import axios from 'axios';
 
-import {Input, Button, Container, Form, P, Title} from './styled';
+import {Input, Container, Form, P, Title, DivForm} from './styled';
 
 // import { goToAdress, goToLogin } from '../../routes/coordinator';
 // import { useHistory } from 'react-router-dom';
@@ -13,7 +13,7 @@ import useForm from '../../hooks/useForm';
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo/logo-future-eats-invert.png';
 import Header from '../../components/Header/Header';
-
+import Button from "@mui/material/Button";
 
 
 export default function SignUp() {
@@ -44,65 +44,108 @@ export default function SignUp() {
      <Header/>
      <img src={logo}/>
    <Title><P>Cadastro</P></Title>
-      
+      <DivForm>
       <Form onSubmit={onSubmitForm}>
+
                         <Input 
                             name="name"
+                            label={"Nome"}
                             placeholder="Nome"
                             value={form.name}
-                            margin="dense"
                             type="text"
                             required
                             onChange={onChange}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Nome"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />
 
                         <Input 
                             name="email"
+                            label={"E-mail"}
                             value={form.email}
                             placeholder={'email@email.com'}
                             onChange={onChange}
-                            margin="dense"
                             required
                             type="email"
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="E-mail"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />  
 
                         <Input 
                             name="cpf"
+                            label={"CPF"}
                             value={form.cpf}
                             onChange={onChange}
                             required
                             pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-                            margin="dense"
                             placeholder={'000.000.000-00'}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="CPF"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />      
                         
                         <Input 
                             name="password"
+                            label={"Senha"}
                             value={form.password}
                             onChange={onChange}
-                            margin="dense"
                             required
                             placeholder={'Mínimo 6 caracteres'}
                             type="password"
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Senha"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />
 
                         <Input 
                             name={"confirmation"}
+                            label={"Confirmar"}
                             placeholder="Confirmarmação"
                             value={form.confirmation}
-                            variant="outlined"
-                            margin="normal"
                             type={"password"}
                             required
                             onChange={onChange}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Confirmar"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
                         />
                         
-                        <Button 
+                        <Button className="butons"
                             type={"submit"}
-                        >
+                            variant="contained"
+                            color="primary"
+                            >
                                 Criar
                         </Button>
                     </Form>
+            </DivForm>
       </Container>
   )
 
