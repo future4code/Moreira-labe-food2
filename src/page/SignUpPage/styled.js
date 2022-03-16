@@ -30,7 +30,7 @@ export const Input= styled.input`
 
 export const Button = styled.button `
 
-  margin-top: 1em;
+  margin-top: 0.5em;
   width: 328px;
   height: 42px;
   padding: 12px 16px;
