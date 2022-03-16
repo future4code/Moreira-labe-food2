@@ -12,7 +12,7 @@ import {signup} from '../../api';
 import useForm from '../../hooks/useForm';
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo/logo-future-eats-invert.png';
-
+import Header from '../../components/Header/Header';
 
 
 
@@ -41,6 +41,7 @@ export default function SignUp() {
   
   return(
    <Container>
+     <Header/>
      <img src={logo}/>
    <Title><P>Cadastro</P></Title>
       

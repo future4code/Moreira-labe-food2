@@ -11,7 +11,7 @@ import {Input, Button, Container, Form, P, Title} from './styled';
 import {putAdress} from '../../api';
 import useForm from '../../hooks/useForm';
 import { useNavigate } from "react-router-dom";
-
+import Header from '../../components/Header/Header'
 
 
 
@@ -37,8 +37,9 @@ export default function Adress() {
    
   
   return(
-   <Container>
-   <Title><P>Meu Endereço</P></Title>
+    <Container>
+    <Header/>
+    <Title><P>Meu Endereço</P></Title>
       
       <Form onSubmit={onSubmitForm}>
                         <Input 
@@ -78,8 +79,6 @@ export default function Adress() {
                             required
                         />  
 
-                             
-                        
                         <Input 
                             name="city"
                             value={form.city}
@@ -104,7 +103,7 @@ export default function Adress() {
                         <Button 
                             type={"submit"}
                         >
-                               Salvar
+                              Salvar
                         </Button>
                     </Form>
       </Container>
