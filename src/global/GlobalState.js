@@ -6,7 +6,7 @@ import GlobalStateContext from "./GlobalStateContext"
 const GlobalState = (props) => {
     const [food, setFood] = useState([])
     const [loading, setLoading] = useState(true)
-    
+    const [newPassword, setNewPassword] = useState("")
 
     useEffect(() => {
            const headers = {Authorization: localStorage.getItem("token"),};
@@ -20,8 +20,8 @@ const GlobalState = (props) => {
             setLoading(false)
     }, []);
 
-    const state = {food,loading }
-    const setters = { setFood, setLoading };
+    const state = {food,loading, newPassword}
+    const setters = { setFood, setLoading, setNewPassword  };
   
 
     return (
