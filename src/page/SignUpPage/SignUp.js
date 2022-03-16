@@ -1,13 +1,13 @@
 import React, {useContext} from 'react'
 
 // import { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 import {Input, Button, Container, Form, P, Title} from './styled';
 
 // import { goToAdress, goToLogin } from '../../routes/coordinator';
 // import { useHistory } from 'react-router-dom';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import {signup} from '../../api';
 import useForm from '../../hooks/useForm';
 import { useNavigate } from "react-router-dom";
@@ -18,27 +18,27 @@ import logo from '../../assets/logo/logo-future-eats-invert.png';
 
 export default function SignUp() {
 
- 
-  const [form, onChange, clear] = useForm({name:"", email:"", cpf:"", password:""})
+  
   const navigate = useNavigate()
 
+  const [form, onChange, clear] = useForm({
+    name: "",
+    email: "",
+    cpf: "",
+    password: "",
+})
+
   const onSubmitForm = (event) => {
-      event.preventDefault()
-      signup(form, clear, navigate)
-      // if (onChangePassword !== form.password) {
-      //   alert("A senha não é igual a anterior");
-      // } else {
-      //   signup();
-      //   clear();
-      // }
-    };
-    console.log(onSubmitForm)
-
-  const onChangePassword = (event) => {
     event.preventDefault()
-    signup(form, clear, navigate)
-};
-
+    if(form.password === form.confirmation){
+     signup(form, clear, navigate)
+    }
+    else{
+      alert("A senha não é igual a anterior")
+    }
+  }
+   
+  
   return(
    <Container>
      <img src={logo}/>
@@ -46,64 +46,63 @@ export default function SignUp() {
       
       <Form onSubmit={onSubmitForm}>
                         <Input 
-                            name={"name"}
-                            placeholder={'Nome e sobrenome'}
+                            name="name"
+                            placeholder="Nome"
                             value={form.name}
-                            onChange={onChange}
-                            label={"Nome"}
+                            margin="dense"
+                            type="text"
                             required
-                            pattern={"^.{3,}"}
+                            onChange={onChange}
                         />
 
                         <Input 
-                            name={"email"}
+                            name="email"
                             value={form.email}
                             placeholder={'email@email.com'}
                             onChange={onChange}
-                            label={"E-mail"}
+                            margin="dense"
                             required
                             type="email"
                         />  
 
                         <Input 
-                            name={"cpf"}
+                            name="cpf"
                             value={form.cpf}
                             onChange={onChange}
-                            label={"CPF"}
                             required
                             pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-                            
+                            margin="dense"
                             placeholder={'000.000.000-00'}
                         />      
                         
                         <Input 
-                            name={"password"}
+                            name="password"
                             value={form.password}
                             onChange={onChange}
-                            label={"Senha"}
+                            margin="dense"
                             required
                             placeholder={'Mínimo 6 caracteres'}
                             type="password"
                         />
 
                         <Input 
-                            name={"password"}
-                            value={form.password}
-                            onChange={onChangePassword}
-                            label={"Confirmar"}
-                            placeholder={'Confirme a senha anterior'}
+                            name={"confirmation"}
+                            placeholder="Confirmarmação"
+                            value={form.confirmation}
+                            variant="outlined"
+                            margin="normal"
+                            type={"password"}
                             required
-                            type="password"
+                            onChange={onChange}
                         />
                         
                         <Button 
                             type={"submit"}
-                            >
+                        >
                                 Criar
                         </Button>
                     </Form>
       </Container>
-
   )
 
 
