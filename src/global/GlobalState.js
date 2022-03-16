@@ -4,28 +4,27 @@ import GlobalStateContext from "./GlobalStateContext"
 
 
 const GlobalState = (props) => {
-    const [food, setFood] = useState([])
+    const [restaurants, setRestaurants] = useState([])
     const [loading, setLoading] = useState(true)
     const [newPassword, setNewPassword] = useState("")
 
     useEffect(() => {
-           const headers = {Authorization: localStorage.getItem("token"),};
-           axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsA`, headers)
-           .then(response =>
-            setFood(response.data),
-            )
+        const token = { headers: { auth: localStorage.getItem('token') } }
+
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/restaurants`, token)
+            .then(response => {
+                setRestaurants(response.data.restaurants)
+            })
             .catch((error) => {
                 console.log(error.response.message)
             })
-            setLoading(false)
     }, []);
 
-    const state = {food,loading, newPassword}
-    const setters = { setFood, setLoading, setNewPassword  };
-  
+    const states = { restaurants, loading, newPassword }
+    const setters = { setRestaurants, setLoading, setNewPassword };
 
     return (
-        <GlobalStateContext.Provider value={{state, setters }}>
+        <GlobalStateContext.Provider value={{states, setters}}>
             {props.children}
         </GlobalStateContext.Provider>
     )
