@@ -133,11 +133,11 @@ export default function Feed() {
         <ContainerCheck>
           <Cash>
             <input type="radio" name="radio" />
-            Dinheiro
+            <span>Dinheiro</span>
           </Cash>
           <CredidCard>
             <input type="radio" name="radio" />
-            Cartão de Crédito
+            <span>Cartão de Crédito</span>
           </CredidCard>
         </ContainerCheck>
 
