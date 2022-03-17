@@ -38,7 +38,12 @@ export const Li = styled.li`
 export const ContainerList = styled.div`
     
     margin: 10px;
+    overflow-x: scroll;
+    width: 100%;
     
+    li.active {
+        color: #5cb646;
+    }
 `
 export const IconSearch = styled.p`
     position: absolute;

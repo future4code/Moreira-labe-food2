@@ -21,6 +21,11 @@ li {
     font-size: 27px;
     color: #000000;
     opacity: 25%;
-}
 
+    
+}
+li.active {
+        color: #5cb646;
+        opacity: 100%;
+    }
 `

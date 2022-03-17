@@ -8,7 +8,13 @@ export const Container = styled.div`
     padding-top: 50px;
 `
 export const Img = styled.img`
-    width: 90%;
+    
+    max-width: 100#;
+    margin-left: -34px;
+    max-height: 10vh;
+    object-fit: cover;
+    
+    border-radius: 10px 10px 0 0;
 `
 export const Card = styled.div`
     margin: 0 auto;
@@ -22,15 +28,16 @@ export const Input = styled.input`
     width: 100%;
     border: 1px solid #b6b6b6;
     border-radius: 4px;
-    opacity: '25%'
+    opacity: 25%;
 `
 export const Ul = styled.ul`
     list-style: none;
-    margin: 30px 0 100px 0 ;
+    margin: 30px 0 10px 0;
+    box-Shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 8px;
+    width: 90%;
 `
 export const Li = styled.li`
-    margin: 10px;
-    
 `
 export const ContainerList = styled.div`
     
