@@ -165,11 +165,17 @@ export const Cash = styled.label`
   display: flex;
   margin-bottom: 4px;
   padding-bottom: 4px;
+  span {
+      margin-left: 5px;
+  } 
 `
 
 export const CredidCard = styled.label`    
   display: flex;
   margin-bottom: 4px;
+  span {
+      margin-left: 5px;
+  } 
 `
 
 
