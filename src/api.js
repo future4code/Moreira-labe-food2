@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {BASE_URL} from "./constants/Urls";
-import {goToFeed, goToAdress }from "./routes/coordinator";
+import {goToFeed, goToAdress, goToProfile }from "./routes/coordinator";
 
 
 const token = localStorage.getItem('token');
@@ -59,3 +59,23 @@ export const putAdress = (body, clear, navigate) => {
   })
       
 }
+
+
+export const putUpdateProfile = (body, navigate) => {
+
+  axios.put(`${BASE_URL}/profile`, body, {
+    headers: {
+      auth: localStorage.getItem("token")
+    }
+  })
+  .then((res)=>{
+    alert("Perfil atualizado com sucesso!")
+    goToProfile(navigate)
+  })
+  .catch((err)=>{
+    alert("Erro tente novamente!")
+    console.log(err.response)
+  })
+      
+}
+

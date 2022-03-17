@@ -16,8 +16,11 @@ export const goToCar = (navigate) => {
 export const goToProfile = (navigate) => {
     navigate("/perfil")
 }
-export const goToEdit = (navigate) => {
-    navigate("/edicao-cadastro")
+export const goToEditProfile = (navigate) => {
+    navigate("/editar-cadastro")
+}
+export const goToEditAddress = (navigate) => {
+    navigate("/editar-endereco")
 }
 export const goToSearch = (navigate) => {
     navigate("/busca")

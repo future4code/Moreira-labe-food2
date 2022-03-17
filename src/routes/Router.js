@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import AdressPage from "../page/AdressPage/AdressPage";
 import CartPage from "../page/CartPage/CartPage";
-import EditRecordPage from "../page/EditRecordPage/EditRecordPage";
+import EditProfilePage from "../page/EditProfilePage/EditProfilePage";
+import EditAddressPage from "../page/EditAddressPage/EditAddressPage";
 import FeedPage from "../page/FeedPage/FeedPage";
 import LoginPage from "../page/LoginPage/LoginPage";
 import ResultPage from "../page/ResultPage/ResultPage";
@@ -25,7 +26,8 @@ export default function RouterApp() {
               <Route  path="/cadastro-endereco" element={<AdressPage/>} />
               <Route  path="/carrinho" element={<CartPage/>} />
               <Route  path="/perfil" element={<ProfilePage/>} />
-              <Route  path="/edicao-cadastro" element={<EditRecordPage/>} />
+              <Route  path="/editar-cadastro" element={<EditProfilePage/>} />
+              <Route  path="/editar-endereco" element={<EditAddressPage/>} />
               <Route  path="/busca" element={<SearchPage/>} />
               <Route  path="*" element={<ErrorPage/>} />
             </Routes>
