@@ -9,8 +9,12 @@ export const Input= styled(TextField)`
   border-radius: 2px;
   border: solid 1px #b8b8b8;
   color:#b8b8b8 ;
-
+  input::placeholder{
+    color: #000000ff;  // não aceita o preto???
+  }
+  
 `
+
 
 // export const Button = styled.button `
 
