@@ -21,7 +21,7 @@ const GlobalState = (props) => {
             .catch((error) => {
                 console.log(error.response.message)
             })
-    }, []);
+    }, ['token']);
 
     const states = { restaurants, loading, newPassword, perfil, endereco, historicoPedidos }
     const setters = { setRestaurants, setLoading, setNewPassword, setPerfil, setEndereco, setHistoricoPedidos };
