@@ -7,7 +7,6 @@ import axios from 'axios';
 import {BASE_URL} from "../../constants/Urls";
 import {Input, Form, DivForm} from './styled';
 import useForm from '../../hooks/useForm';
-import {putUpdateProfile} from '../../api';
 import Button from "@mui/material/Button";
 
 
@@ -15,19 +14,6 @@ export default function EditProfilePage() {
   useProtectedPage()
 
   const navigate = useNavigate()
-
-  const [form, onChange, setForm] = useForm({
-    name: "",
-    email: "",
-    cpf: "",
-})
-
-  const onSubmitForm = (event) => {
-    event.preventDefault()
-    putUpdateProfile(form, navigate)
-  }
-   
-
   const { states, setters } = useContext(GlobalStateContext);
   const token = { headers: { auth: localStorage.getItem('token') } }
 
@@ -35,17 +21,41 @@ export default function EditProfilePage() {
     axios.get(`${BASE_URL}/profile`, token)
         .then(response => {
           setters.setPerfil(response.data.user)
-          // putUpdateProfile()
         })
         .catch((error) => {
             console.log(error.response.data)
         })
   }, []);
 
-  const handleInputChange = (event) => {       
-     const { value, name } = event.target;         
-     onChange(value, name);     
-    };
+  const [form, onChange,clear, setForm] = useForm({  //inclusão do parâmetro clear na ordem
+    name: "",
+    email: "",
+    cpf: "",
+  })
+  
+
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    putUpdateProfile() //alteração
+  }
+
+
+  const putUpdateProfile = ()=>{ 
+
+    const body = form
+
+    axios.put(`${BASE_URL}/profile`, body,  token)
+        .then(response => {
+          setters.setPerfil(response.data.user)
+          console.log("Dados alterados com sucesso!")
+          console.log(response.data.user)
+        })
+        .catch((error) => {
+            console.log(error.response.data)
+        })
+  }
+
+  
 
   return (
 
@@ -62,11 +72,11 @@ export default function EditProfilePage() {
                         <Input 
                             name={"name"}
                             label={"Nome"}
-                            placeholder="Nome"
-                            value={states.perfil.name}
+                            placeholder={states.perfil.name} /* alteração */
+                            value={form.name} /* alteração */
                             type="text"
                             required
-                            onChange={handleInputChange}
+                            onChange={onChange} /* alteração */
                             variant={"outlined"}
                             id="outlined-required"
                             defaultValue="Nome"
@@ -80,9 +90,9 @@ export default function EditProfilePage() {
                         <Input 
                             name={"email"}
                             label={"E-mail"}
-                            value={states.perfil.email}
-                            placeholder={'email@email.com'}
-                            onChange={handleInputChange}
+                            value={form.email}
+                            placeholder={states.perfil.email}
+                            onChange={onChange}
                             required
                             type="email"
                             variant={"outlined"}
@@ -98,11 +108,11 @@ export default function EditProfilePage() {
                         <Input 
                             name={"cpf"}
                             label={"CPF"}
-                            value={states.perfil.cpf}
-                            onChange={handleInputChange}
+                            value={form.cpf}
+                            onChange={onChange}
                             required
                             pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-                            placeholder={'000.000.000-00'}
+                            placeholder={states.perfil.cpf}
                             variant={"outlined"}
                             id="outlined-required"
                             defaultValue="CPF"
