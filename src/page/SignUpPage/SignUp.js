@@ -43,14 +43,14 @@ export default function SignUp() {
    <Container>
      <Header/>
      <img src={logo}/>
-   <Title><P>Cadastro</P></Title>
+   <Title><P>Cadastrar</P></Title>
       <DivForm>
       <Form onSubmit={onSubmitForm}>
 
                         <Input 
                             name="name"
                             label={"Nome"}
-                            placeholder="Nome"
+                            placeholder="Nome e sobrenome"
                             value={form.name}
                             type="text"
                             required
@@ -122,7 +122,7 @@ export default function SignUp() {
                         <Input 
                             name={"confirmation"}
                             label={"Confirmar"}
-                            placeholder="Confirmarmação"
+                            placeholder="Confirme a senha anterior"
                             value={form.confirmation}
                             type={"password"}
                             required
