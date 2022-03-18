@@ -9,7 +9,7 @@ export const Container = styled.div`
 `
 export const Img = styled.img`
     
-    max-width: 100#;
+    max-width: 100;
     margin-left: -34px;
     max-height: 10vh;
     object-fit: cover;

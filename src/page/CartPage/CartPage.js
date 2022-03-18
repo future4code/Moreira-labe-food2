@@ -1,13 +1,11 @@
-import React from "react";
+import React, {useContext, useEffect} from "react"
 import Footer from "../../components/Footer";
-import fries from "../../images/Batata-frita-Png-2-1024x1024.png";
 import {
   Container,
   Img,
   Card,
   Ul,
   Li,
-  ContainerList,
   Title,
   SubTitle,
   ButtonAdd,
@@ -22,6 +20,14 @@ import {
   Cash,
   CredidCard,
 } from "./styled";
+import GlobalStateContext from "../../global/GlobalStateContext"
+import { useNavigate, useParams } from "react-router-dom";
+import useProtectedPage from "../../hooks/useProtectedPage"
+import axios from 'axios';
+import {BASE_URL} from "../../constants/Urls";
+import {goToFeed}from "../../routes/coordinator";
+
+import { api } from "../../api";
 import Button from "@mui/material/Button";
 import { GoSearch } from "react-icons/go";
 import img from "../../images/Whopper_Hero.png";
@@ -29,6 +35,73 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
 export default function Feed() {
+  useProtectedPage()
+
+  // const [restaurantDetails, setRestaurantDetails] = useState([]);
+  const { states, setters } = useContext(GlobalStateContext);
+  const token = { headers: { auth: localStorage.getItem('token') } }
+  const params = useParams();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+
+    axios.get(`${BASE_URL}/restaurants/${params.id}`, token)
+      .then((response) => {
+        setters.setRestaurantDetails([response.data.restaurant]);
+        console.log(response.data.restaurant)
+        ConsultaEndereco()
+        
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+  }, []);
+
+
+
+  const ConsultaEndereco = () =>{
+    axios.get(`${BASE_URL}/profile/address`, token)
+        .then(response => {
+          setters.setAddress(response.data.address)
+        })
+        .catch((error) => {
+            console.log(error.response.data)
+        })
+  }
+
+ const placeOrder = () => {
+    const headers = {"Content-Type":"application/json"}
+    const body = {products:[{
+      id:"",
+      quantity:"",
+    }, {
+      quantity: "",
+      id: "",
+    }],
+    paymentMethod:""}
+  
+    axios.post(`${BASE_URL}/restaurants/${params.id}/order`, body, headers)
+    
+    .then((response)=>{
+      setters.setprodutos([response.data.products])
+      
+      
+    })
+    .catch((err)=>{
+      alert("E-mail ou CPF já cadastrados!")
+      console.log(err.response)
+    })
+        
+  }
+
+  const onClickorder = (event) => {
+    event.preventDefault()
+    placeOrder() //alteração
+    goToFeed(navigate)
+  }
+
+
+
   return (
     <>
       <Container>
@@ -39,12 +112,9 @@ export default function Feed() {
         <StyleAdress style={{ width: "100%" }}>
           <p className="Delivery">Enderço de entrega</p>
           <strong>
-            <p>Rua Alessandra Vieira, 42</p>
+          <p>{states.address.street},  {states.address.number} - {states.address.neighbourhood} </p>
           </strong>
         </StyleAdress>
-
-        <ContainerList></ContainerList>
-
         <Ul>
           <Card>
             <div
@@ -52,16 +122,16 @@ export default function Feed() {
                 width: "100%",
               }}
             >
-              <div>
+              <div key={states.restaurantDetails.id}>
                 <Li style={{ color: "#57B16A", marginLeft: "-6%" }}>
-                  Bullguer Vila Madalena
+                {states.restaurantDetails.name}
                 </Li>
               </div>
 
               <Li
                 style={{ color: "#000000", opacity: "25%", marginLeft: "-6%" }}
               >
-                R. fradique Coutinho, 1136 - Vila Madalena
+                {states.restaurantDetails.address}
               </Li>
 
               <div
@@ -71,7 +141,7 @@ export default function Feed() {
                   marginLeft: "-10%",
                 }}
               >
-                <Li>30 - 45 min</Li>
+                <Li>{states.restaurantDetails.deliveryTime}</Li>
               </div>
             </div>
           </Card>
@@ -84,11 +154,11 @@ export default function Feed() {
             }}
           >
             <Li>
-              <Img src={fries} style={{ width: "96px", height: "112px" }} />
+              <Img src={states.restaurantDetails.photoUrl} style={{ width: "96px", height: "112px" }} />
             </Li>
             <div>
               <div>
-                <Li style={{ color: "#57B16A" }}>Cheese Fries</Li>
+                <Li style={{ color: "#57B16A" }}>{states.restaurantDetails.name}</Li>
                 <Li
                   style={{
                     color: "#000000",
@@ -97,14 +167,14 @@ export default function Feed() {
                     fontSize: "12px",
                   }}
                 >
-                  Porção de fritas temperadas com páprica e queijo derretido.
+                  {states.restaurantDetails.description}
                 </Li>
               </div>
               <Li>
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <strong>R$15,00</strong>
+                  <strong>{states.restaurantDetails.price}</strong>
                   <Counter>3</Counter>
                   <ButtonDel>Remover</ButtonDel>
                 </div>
@@ -112,7 +182,7 @@ export default function Feed() {
             </div>
           </MainCard>
         </Ul>
-        <Freight>Frete R$6,00</Freight>
+        <Freight>Frete {states.restaurants.shipping}</Freight>
 
         <PriceStyle>
           <p>SUBTOTAL</p>
@@ -133,15 +203,15 @@ export default function Feed() {
         <ContainerCheck>
           <Cash>
             <input type="radio" name="radio" />
-            <span>Dinheiro</span>
+            <span>Dinheiro </span>
           </Cash>
           <CredidCard>
             <input type="radio" name="radio" />
-            <span>Cartão de Crédito</span>
+            <span> Cartão de crédito </span>
           </CredidCard>
         </ContainerCheck>
 
-        <ButtonCart>Confirmar</ButtonCart>
+        <ButtonCart onClick={() => {onClickorder()}}>Confirmar</ButtonCart>
         <Footer />
       </Container>
     </>
