@@ -60,9 +60,9 @@ export default function Search({ isSearch }) {
               {states.restaurants.length > 0? 
               <Ul>
                 <Card>
-                  <Li>
+                  
                     <Img src={restaurant.logoUrl} alt={restaurant.name} />
-                  </Li>
+                  
                   <div
                     style={{
                       width: "100%",

@@ -15,6 +15,7 @@ export const Ul = styled.ul`
     width: 90%;
 `
 export const Img = styled.img`
+
     width: 90vw;
     height: 120px;
     margin-left: -9vw;
