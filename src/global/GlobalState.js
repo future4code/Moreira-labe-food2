@@ -7,8 +7,8 @@ const GlobalState = (props) => {
     const [restaurants, setRestaurants] = useState([])
     const [loading, setLoading] = useState(true)
     const [newPassword, setNewPassword] = useState("")
-    const [perfil, setPerfil] = useState({})
-    const [endereco, setEndereco] = useState({})
+    const [profile, setProfile] = useState({})
+    const [address, setAddress] = useState({})
     const [historicoPedidos, setHistoricoPedidos] = useState()
 
     useEffect(() => {
@@ -23,8 +23,8 @@ const GlobalState = (props) => {
             })
     }, ['token']);
 
-    const states = { restaurants, loading, newPassword, perfil, endereco, historicoPedidos }
-    const setters = { setRestaurants, setLoading, setNewPassword, setPerfil, setEndereco, setHistoricoPedidos };
+    const states = { restaurants, loading, newPassword, profile, address, historicoPedidos }
+    const setters = { setRestaurants, setLoading, setNewPassword, setProfile, setAddress, setHistoricoPedidos };
     
 
     return (

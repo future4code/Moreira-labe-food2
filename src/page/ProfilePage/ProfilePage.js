@@ -5,6 +5,9 @@ import GlobalStateContext from "../../global/GlobalStateContext"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {BASE_URL} from "../../constants/Urls";
+import {MdOutlineEdit} from 'react-icons/md'
+import {ContainerProfile, ContainerAddress, Header, Container, P, Box, ContainerHistory } from './styled';
+import Footer from '../../components/Footer';
 
 
 export default function ProfilePage() {
@@ -18,9 +21,9 @@ export default function ProfilePage() {
   useEffect(() => {  
     axios.get(`${BASE_URL}/profile`, token)
         .then(response => {
-          setters.setPerfil(response.data.user)
+          setters.setProfile(response.data.user)
           ConsultaEndereco()
-          ConsultaHistoricoPedidos()
+          OrdersHistory()
         })
         .catch((error) => {
             console.log(error.response.data)
@@ -30,7 +33,7 @@ export default function ProfilePage() {
   const ConsultaEndereco = () =>{
     axios.get(`${BASE_URL}/profile/address`, token)
         .then(response => {
-          setters.setEndereco(response.data.address)
+          setters.setAddress(response.data.address)
         })
         .catch((error) => {
             console.log(error.response.data)
@@ -38,7 +41,7 @@ export default function ProfilePage() {
   }
 
   
-  const ConsultaHistoricoPedidos = () =>{
+  const OrdersHistory = () =>{
     axios.get(`${BASE_URL}/orders/history`, token)
         .then(response => {
           setters.setHistoricoPedidos(response.data.orders)
@@ -49,28 +52,49 @@ export default function ProfilePage() {
   }
 
   return (
-    <div>
+    <Container>
+
+    <Header>
+      <p className="title">Meu Perfil</p>
+    </Header>
       
-    <div> 
-        <p>{states.perfil.name}</p>
-        <p>{states.perfil.email}</p>
-        <p>{states.perfil.cpf}</p>
-
-      <div>
-      <p>Endereço Cadastrato</p>
-          <p>{states.endereco.neighbourhood}</p>
+      <ContainerProfile> 
+        <div className="profilediv">
+          <p>{states.profile.name}</p>
+          <p>{states.profile.email}</p>
+          <p>{states.profile.cpf}</p>
         </div>
-
         <div>
-      <p>Histórico de Pedidos</p>
-          <p>{states.historicoPedidos}</p>
-          
+          <Link to="/editar-cadastro"><MdOutlineEdit className="icon"/></Link>
         </div>
-    </div>
+        </ContainerProfile>
 
-    <Link to='/login'>Login</Link>
+      <ContainerAddress>
+        <div className="profilediv">
+            <p className="addressProfile">Endereço Cadastrato</p>
+            <p>{states.address.street}, {states.address.number} - {states.address.neighbourhood} </p>
+            <p></p>
+            <p></p>
+        </div>
+        <div>
+          <Link to="/editar-endereco"><MdOutlineEdit className="icon"/></Link>
+        </div>
+      </ContainerAddress>
 
-    </div>
+      <P>Histórico de Pedidos</P>
+
+      <ContainerHistory>
+          <Box>
+            <p className="restaurant">{states.profile.name}</p>
+            <p className="date">{states.profile.email}</p>
+            <p className="total">{states.profile.cpf}</p>
+            
+            {states.historicoPedidos}
+          </Box>
+      </ContainerHistory>
+      <Footer/>
+    </Container>
+
   )
 }
 
