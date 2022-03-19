@@ -1,3 +1,4 @@
+import { Button } from "@mui/material"
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -12,21 +13,6 @@ export const Img = styled.img`
     height: 20vh;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-`
-export const ImgProduct = styled.img`
-    
-    display: block;
-    margin: 0 auto;
-    object-fit: cover;
-    order: 1;
-
-    max-width:140px;
-    max-height:140px;
-    min-height:140px;
-    min-width:140px;
-    width: auto;
-    height: auto;
-    border-radius: 10px 0 0 10px;
 `
 export const Card = styled.div`
     margin: 0 auto;
@@ -86,28 +72,44 @@ export const MainCard = styled.div`
     position: relative;
 `
 
-export const ButtonAdd = styled.button`
-  width: 90px;
-  height: 31px;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border: solid 1px #5cb646;
-  background-color: #fff;
-  color: #5cb646;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+export const ContainerModal = styled.div`
+  display: ${({ open }) => (open ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  background:rgba(1,1,1,0.5);
+  position: fixed;
+  top: 0;
+  left: 0; 
 `
-
-export const ButtonDel = styled.button`
-  width: 90px;
-  height: 31px;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border: solid 1px #e02020;
+export const ModalSelect = styled.div`
+  width: 20.5rem;
+  height: 13.5rem;
+  margin: 1.688rem 1rem 1.813rem;
+  padding: 2.688rem 1rem 1.938rem 1rem  ;
   background-color: #fff;
-  color: #e02020;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    width: 18.5rem;
+    height: 1.125rem;
+    margin: 0.375rem 0 0 1rem;
+    font-family: "Roboto";
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    text-align: center;
+    color: #c8c8c8;
+  }
+`
+export const StyledButton = styled(Button) `
+    align-self: flex-end;
 `

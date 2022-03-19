@@ -24,14 +24,15 @@ const GlobalState = (props) => {
                 console.log(error.response.message)
             })
     }, ['token']);
-
-    const states = { restaurants, loading, newPassword, profile, 
-      address, historicoPedidos, restaurantDetails, produtos}
     
-      const setters = { setRestaurants, setLoading, 
-      setNewPassword, setProfile, setAddress, setHistoricoPedidos, 
-      setRestaurantDetails,  setProdutos };
-    
+    const [cart, setCart] = useState(
+        JSON.parse(localStorage.getItem("cart"))
+          ? JSON.parse(localStorage.getItem("cart"))
+          : []
+      );
+  
+    const states = { restaurants, loading, newPassword, profile,address, historicoPedidos, restaurantDetails, produtos}
+    const setters = { setRestaurants, setLoading, setNewPassword, setProfile, setAddress, setHistoricoPedidos, setRestaurantDetails, setProdutos };  
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>
