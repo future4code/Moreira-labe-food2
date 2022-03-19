@@ -31,8 +31,8 @@ const GlobalState = (props) => {
           : []
       );
   
-    const states = { restaurants, loading, newPassword, profile,address, historicoPedidos, restaurantDetails, produtos}
-    const setters = { setRestaurants, setLoading, setNewPassword, setProfile, setAddress, setHistoricoPedidos, setRestaurantDetails, setProdutos };  
+    const states = { restaurants, loading, newPassword, profile,address, historicoPedidos, restaurantDetails, produtos, cart}
+    const setters = { setRestaurants, setLoading, setNewPassword, setProfile, setAddress, setHistoricoPedidos, setRestaurantDetails, setProdutos, setCart };  
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>

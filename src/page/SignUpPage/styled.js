@@ -60,6 +60,7 @@ color: #b8b8b8;
   padding: 12px 16px;
   border-radius: 2px;
   color: black;
+  text-transform: capitalize;
 
 
   }
