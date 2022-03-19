@@ -22,9 +22,15 @@ const GlobalState = (props) => {
                 console.log(error.response.message)
             })
     }, ['token']);
+    
+    const [cart, setCart] = useState(
+        JSON.parse(localStorage.getItem("cart"))
+          ? JSON.parse(localStorage.getItem("cart"))
+          : []
+      );
 
-    const states = { restaurants, loading, newPassword, perfil, endereco, historicoPedidos }
-    const setters = { setRestaurants, setLoading, setNewPassword, setPerfil, setEndereco, setHistoricoPedidos };
+    const states = { restaurants, loading, newPassword, perfil, endereco, historicoPedidos, cart }
+    const setters = { setRestaurants, setLoading, setNewPassword, setPerfil, setEndereco, setHistoricoPedidos, setCart };
     
 
     return (
