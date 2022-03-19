@@ -60,25 +60,22 @@ export default function Search({ isSearch }) {
               {states.restaurants.length > 0? 
               <Ul>
                 <Card>
-                  <Li>
+                  
                     <Img src={restaurant.logoUrl} alt={restaurant.name} />
-                  </Li>
+                  
                   <div
                     style={{
                       width: "100%",
                     }}>
                     <div>
-                      <Li style={{ color: "#57B16A", marginLeft: "-6%" }}>{restaurant.name}</Li>
+                      <Li style={{ color: "#57B16A", margin: "5px 0 10px -6%" }}>{restaurant.name}</Li>
                     </div>
                     <div
-                      style={{
-                        display: "flex",
-                        color: "#000000",
-                        opacity: "25%",
+                      style={{display: "flex",justifyContent: "space-between",opacity: "25%",marginLeft: "-6%"
                         
                       }}>
-                      <Li>{restaurant.deliveryTime}min</Li>
-                      <Li>Frete: R${restaurant.shipping.toFixed(2)}</Li>
+                      <li>{restaurant.deliveryTime}min </li>
+                      <li> Frete: R${restaurant.shipping.toFixed(2)}</li>
                     </div>
                   </div>
                 </Card>

@@ -38,115 +38,114 @@ export default function SignUp() {
     }
   }
 
-  return (
-    <Container>
-      <Header />
-      <img src={logo} />
-      <Title><P>Cadastro</P></Title>
+  return(
+   <Container>
+     <Header/>
+     <img src={logo}/>
+   <Title><P>Cadastrar</P></Title>
       <DivForm>
-        <Form onSubmit={onSubmitForm}>
+      <Form onSubmit={onSubmitForm}>
 
-          <Input
-            name="name"
-            label={"Nome"}
-            placeholder="Nome"
-            value={form.name}
-            type="text"
-            required
-            onChange={onChange}
-            variant={"outlined"}
-            id="outlined-required"
-            defaultValue="Nome"
-            fullWidth
-            margin={"dense"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+                        <Input 
+                            name="name"
+                            label={"Nome"}
+                            placeholder="Nome e sobrenome"
+                            value={form.name}
+                            type="text"
+                            required
+                            onChange={onChange}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Nome"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                        />
 
-          <Input
-            name="email"
-            label={"E-mail"}
-            value={form.email}
-            placeholder={'email@email.com'}
-            onChange={onChange}
-            required
-            type="email"
-            variant={"outlined"}
-            id="outlined-required"
-            defaultValue="E-mail"
-            fullWidth
-            margin={"dense"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+                        <Input 
+                            name="email"
+                            label={"E-mail"}
+                            value={form.email}
+                            placeholder={'email@email.com'}
+                            onChange={onChange}
+                            required
+                            type="email"
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="E-mail"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                        />  
 
-          <Input
-            name="cpf"
-            label={"CPF"}
-            value={form.cpf}
-            onChange={onChange}
-            required
-            pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-            placeholder={'000.000.000-00'}
-            variant={"outlined"}
-            id="outlined-required"
-            defaultValue="CPF"
-            fullWidth
-            margin={"dense"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+                        <Input 
+                            name="cpf"
+                            label={"CPF"}
+                            value={form.cpf}
+                            onChange={onChange}
+                            required
+                            pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
+                            placeholder={'000.000.000-00'}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="CPF"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                        />      
+                        
+                        <Input 
+                            name="password"
+                            label={"Senha"}
+                            value={form.password}
+                            onChange={onChange}
+                            required
+                            placeholder={'Mínimo 6 caracteres'}
+                            type="password"
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Senha"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                        />
 
-          <Input
-            name="password"
-            label={"Senha"}
-            value={form.password}
-            onChange={onChange}
-            required
-            placeholder={'Mínimo 6 caracteres'}
-            type="password"
-            variant={"outlined"}
-            id="outlined-required"
-            defaultValue="Senha"
-            fullWidth
-            margin={"dense"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <Input
-            className="form-control"
-            name={"confirmation"}
-            label={"Confirmar"}
-            placeholder="Confirmarmação"
-            value={form.confirmation}
-            type={"password"}
-            required
-            onChange={onChange}
-            variant={"outlined"}
-            id="outlined-required"
-            defaultValue="Confirmar"
-            fullWidth
-            margin={"dense"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <Button className="butons"
-            type={"submit"}
-            variant="contained"
-            color="primary"
-          >
-            Criar
-          </Button>
-        </Form>
-      </DivForm>
-    </Container>
+                        <Input 
+                            name={"confirmation"}
+                            label={"Confirmar"}
+                            placeholder="Confirme a senha anterior"
+                            value={form.confirmation}
+                            type={"password"}
+                            required
+                            onChange={onChange}
+                            variant={"outlined"}
+                            id="outlined-required"
+                            defaultValue="Confirmar"
+                            fullWidth
+                            margin={"dense"}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                        />
+                        
+                        <Button className="butons"
+                            type={"submit"}
+                            variant="contained"
+                            color="primary"
+                            >
+                                Criar
+                        </Button>
+                    </Form>
+            </DivForm>
+      </Container>
   )
 
 

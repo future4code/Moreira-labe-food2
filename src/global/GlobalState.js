@@ -7,9 +7,11 @@ const GlobalState = (props) => {
     const [restaurants, setRestaurants] = useState([])
     const [loading, setLoading] = useState(true)
     const [newPassword, setNewPassword] = useState("")
-    const [perfil, setPerfil] = useState({})
-    const [endereco, setEndereco] = useState({})
+    const [profile, setProfile] = useState({})
+    const [address, setAddress] = useState({})
     const [historicoPedidos, setHistoricoPedidos] = useState()
+    const [restaurantDetails, setRestaurantDetails] = useState([]);
+    const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
         const token = { headers: { auth: localStorage.getItem('token') } }
@@ -28,10 +30,9 @@ const GlobalState = (props) => {
           ? JSON.parse(localStorage.getItem("cart"))
           : []
       );
-
-    const states = { restaurants, loading, newPassword, perfil, endereco, historicoPedidos, cart }
-    const setters = { setRestaurants, setLoading, setNewPassword, setPerfil, setEndereco, setHistoricoPedidos, setCart };
-    
+  
+    const states = { restaurants, loading, newPassword, profile,address, historicoPedidos, restaurantDetails, produtos}
+    const setters = { setRestaurants, setLoading, setNewPassword, setProfile, setAddress, setHistoricoPedidos, setRestaurantDetails, setProdutos };  
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>

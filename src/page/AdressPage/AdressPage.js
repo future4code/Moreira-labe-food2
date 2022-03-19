@@ -52,7 +52,7 @@ export default function Adress() {
                             type="text"
                             variant={"outlined"}
                             id="outlined-required"
-                            defaultValue="Rua/ Av."
+                            defaultValue="Rua / Av."
                             fullWidth
                             margin={"dense"}
                             InputLabelProps={{
