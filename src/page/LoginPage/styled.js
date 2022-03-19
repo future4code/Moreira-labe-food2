@@ -44,10 +44,12 @@ color: #b8b8b8;
 
   .butons{
   width: 328px;
- height: 42px;
+  height: 42px;
   padding: 12px 16px;
   border-radius: 2px;
   color: black;
+  text-transform: capitalize;
+  font-weight: 700
 
 
   }
