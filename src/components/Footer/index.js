@@ -13,7 +13,7 @@ const Footer = () => {
             <Container>
                 <ul>
                     <li className={ '/restaurantes' === pathName ? 'active' : null} onClick={()=> {navigate('/restaurantes')}}><AiOutlineHome/></li>
-                    <li className={ '/carrinho/:id' === pathName ? 'active' : null}onClick={()=> {navigate('/carrinho/:id')}}><AiOutlineShoppingCart /></li>
+                    <li className={ '/carrinho' === pathName ? 'active' : null}onClick={()=> {navigate('/carrinho')}}><AiOutlineShoppingCart /></li>
                     <li className={ '/perfil' === pathName ? 'active' : null}onClick={()=> {navigate('/perfil')}}><AiOutlineUser/></li>
                 </ul>
             </Container>

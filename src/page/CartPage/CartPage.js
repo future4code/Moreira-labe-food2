@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useContext, useEffect} from "react"
 import Footer from "../../components/Footer";
 import {
   Container,
@@ -21,18 +21,12 @@ import {
   CredidCard,
 } from "./styled";
 import GlobalStateContext from "../../global/GlobalStateContext"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useProtectedPage from "../../hooks/useProtectedPage"
 import axios from 'axios';
 import {BASE_URL} from "../../constants/Urls";
-import {goToFeed}from "../../routes/coordinator";
+import {goToCar, goToFeed}from "../../routes/coordinator";
 
-import { api } from "../../api";
-import Button from "@mui/material/Button";
-import { GoSearch } from "react-icons/go";
-import img from "../../images/Whopper_Hero.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
 
 export default function Feed() {
   useProtectedPage()
@@ -49,6 +43,12 @@ export default function Feed() {
     return total + (item.price * item.quantity);
    }
 
+   
+   const totalShipping = restaurantDetails.reduce(getTotalShipping,0)
+   function getTotalShipping(total, item) {
+    return total + (item.shipping);
+   }
+
   useEffect(() => {
     axios.get(`${BASE_URL}/profile/address`, token)
     .then(response => {
@@ -59,11 +59,38 @@ export default function Feed() {
     })
   }, []);
 
+  const placeOrder = () => {
+    const order = itensCart.map((item) => {
+      return  {
+        id: item.id,
+        quantity: item.quantity
+      }
+    })
+    const body = {products:order,
+    paymentMethod:restaurantDetails[0].paymentMethod}
+  
+    axios.post(`${BASE_URL}/restaurants/${restaurantDetails[0].id}/order`, body, token)
+    
+    .then((response)=>{
+      alert("Pedido Realizado com sucesso!")           
+    })
+    .catch((err)=>{
+      alert("Erro!")
+    })
+        
+  }
 
   const onClickorder = (event) => {
-    event.preventDefault()
-    //placeOrder() //alteração
+    placeOrder() //alteração
     goToFeed(navigate)
+  }
+
+  const onDelete = (id) => {
+    const newCart = itensCart.filter((produto) => {
+      return produto.id !== id
+    })
+    localStorage.setItem("cart", JSON.stringify(newCart))
+    goToCar(navigate)
   }
 
   return (
@@ -145,7 +172,7 @@ export default function Feed() {
                   >
                     <strong>R$ {produto.quantity * produto.price}</strong>
                     <Counter>{produto.quantity }</Counter>                   
-                    <ButtonDel>Remover</ButtonDel>
+                    <ButtonDel onClick={()=> onDelete(produto.id)}>Remover</ButtonDel>
                   </div>
                 </Li>
               </div>
@@ -153,11 +180,14 @@ export default function Feed() {
           </MainCard>
            )))}
         </Ul>
-        <Freight>Frete {states.restaurants.shipping}</Freight>
+
+        {restaurantDetails.map((restaurant => (          
+          <Freight>Frete R${restaurant.shipping}</Freight>
+        )))}
 
         <PriceStyle>
           <p>SUBTOTAL</p>
-          <p className="Total">R${totalPrice}</p>
+          <p className="Total">R${totalPrice + totalShipping}</p>
         </PriceStyle>
 
         <SubTitle>Formas de Pagamento</SubTitle>
