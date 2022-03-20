@@ -24,7 +24,7 @@ export default function RouterApp() {
               <Route  path="/restaurantes" element={<FeedPage/>} />
               <Route  path="/restaurantes/:id" element={<ResultPage/>} />
               <Route  path="/cadastro-endereco" element={<AdressPage/>} />
-              <Route  path="/carrinho/:id" element={<CartPage/>} />
+              <Route  path="/carrinho" element={<CartPage/>} />
               <Route  path="/perfil" element={<ProfilePage/>} />
               <Route  path="/editar-cadastro" element={<EditProfilePage/>} />
               <Route  path="/editar-endereco" element={<EditAddressPage/>} />
