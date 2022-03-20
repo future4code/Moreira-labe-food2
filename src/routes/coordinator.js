@@ -10,8 +10,8 @@ export const goToResult = (navigate, id) => {
 export const goToAdress = (navigate) => {
     navigate("/cadastro-endereco")
 }
-export const goToCar = (navigate, id) => {
-    navigate(`/carrinho/${id}`)
+export const goToCar = (navigate) => {
+    navigate(`/carrinho`)
 }
 export const goToProfile = (navigate) => {
     navigate("/perfil")
