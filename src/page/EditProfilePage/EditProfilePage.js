@@ -3,30 +3,35 @@ import useProtectedPage from "../../hooks/useProtectedPage"
 // import {Link} from 'react-router-dom';
 import GlobalStateContext from "../../global/GlobalStateContext"
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-import {BASE_URL} from "../../constants/Urls";
+// import axios from 'axios';
+// import {BASE_URL} from "../../constants/Urls";
 import {Input, Form, DivForm, Header, Buttons, Container} from './styled';
 import useForm from '../../hooks/useForm';
 import Button from "@mui/material/Button";
 import {IoIosArrowBack} from 'react-icons/io';
 import { goToProfile } from "../../routes/coordinator";
+import { putUpdateProfile, getProfile } from '../../api';
 
 export default function EditProfilePage() {
   useProtectedPage()
 
   const navigate = useNavigate()
   const { states, setters } = useContext(GlobalStateContext);
-  const token = { headers: { auth: localStorage.getItem('token') } }
+  //const token = { headers: { auth: localStorage.getItem('token') } }
 
-  useEffect(() => {  
-    axios.get(`${BASE_URL}/profile`, token)
-        .then(response => {
-          setters.setProfile(response.data.user)
-        })
-        .catch((error) => {
-            console.log(error.response.data)
-        })
-  }, []);
+  // useEffect((setForm) => {  
+  //   axios.get(`${BASE_URL}/profile`, token)
+  //       .then(response => {
+  //         setForm({
+  //           name: response.data.user?response.data.user.name:"",
+  //           email: response.data.user?response.data.user.email:"",
+  //           cpf: response.data.user?response.data.user.cpf:"",
+  //       })
+  //   })
+  //       .catch((error) => {
+  //           console.log(error.response)
+  //       })
+  // }, []);
 
   const [form, onChange,clear, setForm] = useForm({  //inclusão do parâmetro clear na ordem
     name: "",
@@ -37,25 +42,15 @@ export default function EditProfilePage() {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    putUpdateProfile() //alteração
-    goToProfile(navigate)
+    putUpdateProfile(form, onChange, clear, setForm) //alteração
+    
   }
 
+  useEffect(() => {
+    getProfile(setForm);
+  }, []);
 
-  const putUpdateProfile = ()=>{ 
-
-    const body = form
-
-    axios.put(`${BASE_URL}/profile`, body,  token)
-        .then(response => {
-          setters.setProfile(response.data.user)
-          console.log("Dados alterados com sucesso!")
-          console.log(response.data.user)
-        })
-        .catch((error) => {
-            console.log(error.response.data)
-        })
-  }
+  
 
   
 
@@ -74,7 +69,7 @@ export default function EditProfilePage() {
                         <Input 
                             name={"name"}
                             label={"Nome"}
-                            placeholder={states.profile.name} /* alteração */
+                            placeholder="Nome e Sobrenome" /* alteração */
                             value={form.name} /* alteração */
                             type="text"
                             required
@@ -93,7 +88,7 @@ export default function EditProfilePage() {
                             name={"email"}
                             label={"E-mail"}
                             value={form.email}
-                            placeholder={states.profile.email}
+                            placeholder="email@email.com"
                             onChange={onChange}
                             required
                             type="email"
@@ -114,7 +109,7 @@ export default function EditProfilePage() {
                             onChange={onChange}
                             required
                             pattern="^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-                            placeholder={states.profile.cpf}
+                            placeholder="000.000.000-00"
                             variant={"outlined"}
                             id="outlined-required"
                             defaultValue="CPF"
