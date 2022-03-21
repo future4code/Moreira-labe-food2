@@ -21,7 +21,7 @@ O que funciona:
 * Adicionar ao carrinho;
 * Escolher forma de pagamento;
 
-Link do Surge: finicky-coach.surge.sh
+Link do Surge: https://tiny-spade.surge.sh/login
 
 Imagens do Projeto:
 
