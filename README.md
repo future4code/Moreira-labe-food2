@@ -21,7 +21,7 @@ O que funciona:
 * Adicionar ao carrinho;
 * Escolher forma de pagamento;
 
-Link do Surge: https://tiny-spade.surge.sh/login
+Link do Surge: https://tiny-spade.surge.sh/
 
 Imagens do Projeto:
 
