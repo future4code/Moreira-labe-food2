@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import {Input, DivForm, Container, Form, P, Title, Header, Butons} from './styled';
 import {IoIosArrowBack} from 'react-icons/io';
 import { goToProfile } from "../../routes/coordinator";
-
+import { putEditAdress, getAdress } from '../../api';
 
 export default function EditAddressPage() {
   useProtectedPage()
@@ -19,18 +19,7 @@ export default function EditAddressPage() {
   const { states, setters } = useContext(GlobalStateContext);
   const token = { headers: { auth: localStorage.getItem('token') } }
 
-  useEffect(() => {  
-    axios.get(`${BASE_URL}/profile/address`, token)
-        .then(response => {
-          setters.setAddress(response.data.address)
-          console.log(response.data.address)
-        })
-        .catch((error) => {
-            console.log(error.response.data)
-        })
-  }, []);
-
-  const [form, onChange,clear, setForm] = useForm({  //inclusão do parâmetro clear na ordem
+  const [form, onChange,clear, setForm] = useForm({  
     street: "",
     number: "",
     neighbourhood: "",
@@ -42,29 +31,13 @@ export default function EditAddressPage() {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    putEditAdress()//alteração
-    goToProfile(navigate)
+    putEditAdress(form, clear, navigate)
+   
   }
 
- const putEditAdress = () => {
-  const body = form
-    axios.put(`${BASE_URL}/address`, body, {
-      headers: {
-        auth: localStorage.getItem("token")
-      }
-    })
-    .then((res)=>{
-      setters.setAddress(res.data)
-      console.log(res.data)
-      alert("Endereço atualizado com sucesso!")
-      clear()
-    })
-    .catch((err)=>{
-      alert("Erro tente novamente!")
-      console.log(err.response)
-    })
-        
-  }
+  useEffect(() => {
+    getAdress(setForm);
+  }, []);
 
 
 
@@ -84,7 +57,7 @@ export default function EditAddressPage() {
                             name="street"
                             label="Logradouro"
                             value={form.street}
-                            placeholder={states.address.street}
+                            placeholder="Rua/Avenida"
                             onChange={onChange}
                             required
                             type="text"
@@ -102,7 +75,7 @@ export default function EditAddressPage() {
                             name="number"
                             label="Número"
                             value={form.number}
-                            placeholder={states.address.number}
+                            placeholder="Número"
                             onChange={onChange}
                             required
                             type="number"
@@ -122,7 +95,7 @@ export default function EditAddressPage() {
                             label="Complemento"
                             value={form.complement}
                             onChange={onChange}
-                            placeholder={states.address.complement}
+                            placeholder="Ap. /Bloco."
                             variant={"outlined"}
                             id="outlined-required"
                             defaultValue="Ap. /Bloco."
@@ -137,7 +110,7 @@ export default function EditAddressPage() {
                             name="neighbourhood"
                             label="Bairro"
                             value={form.neighbourhood}
-                            placeholder={states.address.neighbourhood}
+                            placeholder="Bairro"
                             onChange={onChange}
                             required
                             variant={"outlined"}
@@ -157,7 +130,7 @@ export default function EditAddressPage() {
                             label="Cidade"
                             onChange={onChange}
                             required
-                            placeholder={states.address.city}
+                            placeholder="Cidade"
                             type="text"
                             variant={"outlined"}
                             id="outlined-required"
@@ -172,7 +145,7 @@ export default function EditAddressPage() {
                         <Input 
                             name={"state"}
                             label="Estado"
-                            placeholder={states.address.state}
+                            placeholder="Estado"
                             value={form.state}
                             type={"text"}
                             required

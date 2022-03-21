@@ -64,24 +64,88 @@ export const putAdress = (body, clear, navigate) => {
 }
 
 
-export const putUpdateProfile = (body, navigate) => {
+export const putUpdateProfile = (body, navigate, clear) => {
 
   axios.put(`${BASE_URL}/profile`, body, {
     headers: {
       auth: localStorage.getItem("token")
     }
   })
-  .then((res)=>{
+  .then((response)=>{
     alert("Perfil atualizado com sucesso!")
     goToProfile(navigate)
+    clear()
   })
   .catch((err)=>{
-    alert("Erro tente novamente!")
+    
     console.log(err.response)
   })
       
 }
 
+export const putEditAdress = (body, clear, navigate) => {
+  
+    axios.put(`${BASE_URL}/address`, body, {
+      headers: {
+        auth: localStorage.getItem("token")
+      }
+    })
+    .then((res)=>{
+      
+      alert("Endereço atualizado com sucesso!")
+      goToProfile(navigate)
+      clear()
+    })
+    .catch((err)=>{
+      alert("Erro tente novamente!")
+      console.log(err.response)
+    })
+        
+  }
+
+  
+
+export const getProfile = (setForm) => {
+  const token = localStorage.getItem('token')
+  axios
+      .get(`${BASE_URL}/profile`, {
+          headers: {
+              auth: token
+          }
+      })
+      .then((response) => {
+          setForm({
+              name: response.data.user?response.data.user.name:"",
+              email: response.data.user?response.data.user.email:"",
+              cpf: response.data.user?response.data.user.cpf:"",
+          })
+      })
+      .catch((err) => {
+      })
+}
+
+
+export const getAdress = (setForm) => {
+  const token = localStorage.getItem('token')
+  axios
+      .get(`${BASE_URL}/profile/address`, {
+          headers: {
+              auth: token
+          }
+      })
+      .then((response) => {
+          setForm({
+              street: response.data.address?response.data.address.street:"",
+              number: response.data.address?response.data.address.number:"",
+              neighbourhood: response.data.address?response.data.address.neighbourhood:"",
+              city: response.data.address?response.data.address.city:"",
+              state: response.data.address?response.data.address.state:"",
+              complement: response.data.address?response.data.address.complement:"",
+          })
+      })
+      .catch((err) => {
+      })
+}
 
 
 
