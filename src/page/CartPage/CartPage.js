@@ -66,9 +66,19 @@ export default function Feed() {
         quantity: item.quantity
       }
     })
+    let paymentMethod = ""
+    if(document.getElementById("money").checked){
+      paymentMethod = document.getElementById("money").value
+    }else if (document.getElementById("creditcard").checked){
+      paymentMethod = document.getElementById("creditcard").value
+    }else {
+      alert("Informe uma forma de pagamento")
+      return false
+    }
+
     const body = {products:order,
-    paymentMethod:restaurantDetails[0].paymentMethod}
-  
+    paymentMethod:paymentMethod}
+    
     axios.post(`${BASE_URL}/restaurants/${restaurantDetails[0].id}/order`, body, token)
     
     .then((response)=>{
@@ -82,6 +92,7 @@ export default function Feed() {
 
   const onClickorder = (event) => {
     placeOrder() //alteração
+    // JSON.parse(localStorage.getItem("cart", ""))
     goToFeed(navigate)
   }
 
@@ -106,25 +117,41 @@ export default function Feed() {
            <p>{states.address.street},  {states.address.number} - {states.address.neighbourhood} </p>
           </strong>
         </StyleAdress>
+        
+
         <Ul>
           {restaurantDetails.map((restaurant => (
+
+            
           <Card>
+              <div>
+              {itensCart.length === 0 ? (
+              <p style={{ textAlign: "center"}}>Carrinho vazio</p>
+                  
+              ): restaurant.loading }
+              </div>
               <div
                 style={{
                   width: "100%",
                 }}
               >
                 <div >
-                  <Li style={{ color: "#57B16A", marginLeft: "-6%" }}>
-                  {restaurant.name}
-                  </Li>
+                  
+                  {itensCart.length !== 0 ?(
+                    <Li style={{ color: "#57B16A", marginLeft: "-6%" }}>
+                      {restaurant.name}
+                    </Li>
+                      
+                  ): restaurant.loading }
+                  
                 </div>
-
+                {itensCart.length !== 0 ?(
                 <Li
                   style={{ color: "#000000", opacity: "25%", marginLeft: "-6%" }}
                 >
                   {restaurant.address}
                 </Li>
+                ): restaurant.loading }
 
                 <div
                   style={{
@@ -133,11 +160,15 @@ export default function Feed() {
                     marginLeft: "-10%",
                   }}
                 >
+                  {itensCart.length !== 0 ?(
                   <Li>{restaurant.deliveryTime}</Li>
+                  ): restaurant.loading }
                 </div>
               </div>
             </Card>
           )))}
+
+        
 
           {itensCart.map((produto => (
           <MainCard
@@ -170,7 +201,7 @@ export default function Feed() {
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <strong>R$ {produto.quantity * produto.price}</strong>
+                    <strong>R$ {produto.quantity * produto.price.toFixed(2)}</strong>
                     <Counter>{produto.quantity }</Counter>                   
                     <ButtonDel onClick={()=> onDelete(produto.id)}>Remover</ButtonDel>
                   </div>
@@ -182,12 +213,23 @@ export default function Feed() {
         </Ul>
 
         {restaurantDetails.map((restaurant => (          
-          <Freight>Frete R${restaurant.shipping}</Freight>
+          <Freight>
+          <div>
+          {itensCart.length !== 0 ? (
+          <p>Frete R${restaurant.shipping}</p>
+           ): itensCart.shipping}
+          </div>
+          </Freight>
         )))}
 
         <PriceStyle>
           <p>SUBTOTAL</p>
+          <div>
+          {itensCart.length !== 0 ? (
           <p className="Total">R${totalPrice + totalShipping}</p>
+           ): itensCart.shipping}
+          </div>
+
         </PriceStyle>
 
         <SubTitle>Formas de Pagamento</SubTitle>
@@ -203,11 +245,11 @@ export default function Feed() {
 
         <ContainerCheck>
           <Cash>
-            <input type="radio" name="radio" />
+            <input type="radio" id="money" value ="money" name="radio" />
             <span>Dinheiro </span>
           </Cash>
           <CredidCard>
-            <input type="radio" name="radio" />
+            <input type="radio" id="creditcard" value="creditcard" name="radio" />
             <span> Cartão de crédito </span>
           </CredidCard>
         </ContainerCheck>

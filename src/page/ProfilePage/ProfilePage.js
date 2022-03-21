@@ -47,7 +47,7 @@ export default function ProfilePage() {
           setters.setHistoricoPedidos(response.data.orders)
         })
         .catch((error) => {
-            console.log(error.response.data)
+            console.log(error.response)
         })
   }
 
@@ -85,11 +85,11 @@ export default function ProfilePage() {
 
       <ContainerHistory>
           <Box>
-            <p className="restaurant">{states.profile.name}</p>
+            {/* <p className="restaurant">{states.profile.name}</p>
             <p className="date">{states.profile.email}</p>
-            <p className="total">{states.profile.cpf}</p>
+            <p className="total">{states.profile.cpf}</p> */}
             
-            {states.historicoPedidos}
+            {/* {states.historicoPedidos} */}
           </Box>
       </ContainerHistory>
       <Footer/>

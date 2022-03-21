@@ -26,11 +26,12 @@ export const Img = styled.img`
 `
 
 export const Card = styled.div`
-    margin: 0 auto;
+    margin-top: 20px;
     background: #FFFFFF;
-    width: 80%;
+    width: 100%;
     //box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 10px;
+    margin-left: 40px;
 `
 
 export const Input = styled.input`
