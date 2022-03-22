@@ -21,6 +21,7 @@ O que funciona:
 * Adicionar ao carrinho;
 * Escolher forma de pagamento;
 * Remover produtos do Carrinho;
+* Fazero pedido;
 * Histórico de pedidos.
 
 Link do Surge: https://tiny-spade.surge.sh/
