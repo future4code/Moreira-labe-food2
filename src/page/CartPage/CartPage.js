@@ -38,16 +38,14 @@ export default function Feed() {
   const restaurantDetails =  JSON.parse(localStorage.getItem("restaurant"));
   
 
-  const totalPrice =itensCart.reduce(getTotal,0)
-  function getTotal(total, item) {
-    return total + (item.price * item.quantity);
-   }
+  const totalPrice =itensCart.reduce((getTotal,valor) => {
+    return getTotal + valor.price * valor.quantity}, 0);
 
-   
-   const totalShipping = restaurantDetails.reduce(getTotalShipping,0)
-   function getTotalShipping(total, item) {
-    return total + (item.shipping);
-   }
+ 
+  
+ const totalShipping =restaurantDetails.reduce((getTotalShipping,valor) => {
+  return  getTotalShipping + valor.shipping}, 0);
+
 
   useEffect(() => {
     axios.get(`${BASE_URL}/profile/address`, token)
@@ -126,7 +124,7 @@ export default function Feed() {
           <Card>
               <div>
               {itensCart.length === 0 ? (
-              <p style={{ textAlign: "center"}}>Carrinho vazio</p>
+              <p>Carrinho vazio</p>
                   
               ): restaurant.loading }
               </div>
@@ -212,23 +210,25 @@ export default function Feed() {
            )))}
         </Ul>
 
-        {restaurantDetails.map((restaurant => (          
+                 
           <Freight>
           <div>
-          {itensCart.length !== 0 ? (
-          <p>Frete R${restaurant.shipping}</p>
-           ): itensCart.shipping}
+          
+          
+         
+          <p>Frete R$ {(totalShipping.toFixed(2))}</p>
+          
           </div>
           </Freight>
-        )))}
+        
 
         <PriceStyle>
           <p>SUBTOTAL</p>
-          <div>
-          {itensCart.length !== 0 ? (
-          <p className="Total">R${totalPrice + totalShipping}</p>
-           ): itensCart.shipping}
-          </div>
+         
+          
+          <p className="Total">R${( totalPrice + totalShipping ).toFixed(2)}</p>
+           
+          
 
         </PriceStyle>
 

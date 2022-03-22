@@ -6,6 +6,7 @@ export const Container = styled.div`
     align-items: center;
     width: 100%;
     padding-top: 20px;
+    
 `
 
 export const StyleAdress = styled.div`
@@ -31,7 +32,8 @@ export const Card = styled.div`
     width: 100%;
     //box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 10px;
-    margin-left: 40px;
+    
+    
 `
 
 export const Input = styled.input`
@@ -43,11 +45,12 @@ export const Input = styled.input`
 
 export const Ul = styled.ul`
     list-style: none;
-    margin: -8px 0 20px 0 ;
+    margin: 10px ;
 `
 
 export const Li = styled.li`
-    margin: 10px;
+    margin-left: 20px;
+   
     
 `
 
