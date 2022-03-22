@@ -48,6 +48,8 @@ Detalhes dos restaurantes
 
 Carrinho
 ![image](https://user-images.githubusercontent.com/92445126/159392051-689673e2-d0c9-4f21-ab28-4ba39679978d.png)
+![image](https://user-images.githubusercontent.com/92445126/159396258-d65ad758-a6ec-40e7-98af-06298bf434a6.png)
+
 
 Perfil
 ![image](https://user-images.githubusercontent.com/92445126/159392129-10c05722-3627-4656-9ef9-e98e8acfdc63.png)
