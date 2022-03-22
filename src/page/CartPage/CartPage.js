@@ -36,16 +36,17 @@ export default function Feed() {
   const navigate = useNavigate();
   const itensCart =  JSON.parse(localStorage.getItem("cart"));
   const restaurantDetails =  JSON.parse(localStorage.getItem("restaurant"));
-  
+
 
   const totalPrice =itensCart.reduce((getTotal,valor) => {
     return getTotal + valor.price * valor.quantity}, 0);
 
- 
+    const totalShipping = (itensCart.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
   
- const totalShipping =restaurantDetails.reduce((getTotalShipping,valor) => {
-  return  getTotalShipping + valor.shipping}, 0);
+  // const totalShipping =restaurantDetails.reduce((getTotalShipping,valor) => {
+  //  return  getTotalShipping + valor.shipping}, 0);
 
+   
 
   useEffect(() => {
     axios.get(`${BASE_URL}/profile/address`, token)
@@ -212,13 +213,11 @@ export default function Feed() {
 
                  
           <Freight>
-          <div>
+    
+
+          <p>Frete {`R$${totalShipping}.00`}</p>
           
-          
-         
-          <p>Frete R$ {(totalShipping.toFixed(2))}</p>
-          
-          </div>
+      
           </Freight>
         
 
