@@ -13,6 +13,7 @@ const GlobalState = (props) => {
     const [restaurantDetails, setRestaurantDetails] = useState([]);
     const [produtos, setProdutos] = useState([]);
 
+
     useEffect(() => {
         const token = { headers: { auth: localStorage.getItem('token') } }
 

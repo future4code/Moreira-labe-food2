@@ -75,6 +75,7 @@ align-items: flex-start;
 justify-content: space-around;
 width: 100%;
 
+
 `
 
 export const P = styled.p `
@@ -95,6 +96,16 @@ export const Box = styled.div `
 
 `
 
+export const DivBox = styled.div `
+display: flex;
+flex-direction: column;
+width: 100%;
+overflow: scroll;
+height: 250px;
+  
+
+`
+
 export const ContainerHistory = styled.div `
 
 display: flex;
@@ -104,6 +115,7 @@ justify-content: center;
 width: 100%;
 margin-top: 20px;
 line-height: 1.8;
+
 
     .date{
       width: 296px;

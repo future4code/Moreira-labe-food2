@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {BASE_URL} from "../../constants/Urls";
 import {MdOutlineEdit} from 'react-icons/md'
-import {ContainerProfile, ContainerAddress, Header, Container, P, Box, ContainerHistory } from './styled';
+import {ContainerProfile, ContainerAddress, Header, Container, P, Box, ContainerHistory, DivBox } from './styled';
 import Footer from '../../components/Footer';
-
+import HistoryCard from "../../components/teste/CardRestaurant";
 
 export default function ProfilePage() {
   useProtectedPage()
@@ -47,7 +47,7 @@ export default function ProfilePage() {
           setters.setHistoricoPedidos(response.data.orders)
         })
         .catch((error) => {
-            console.log(error.response.data)
+            console.log(error.response)
         })
   }
 
@@ -82,16 +82,11 @@ export default function ProfilePage() {
       </ContainerAddress>
 
       <P>Histórico de Pedidos</P>
-
+      <DivBox>
       <ContainerHistory>
-          <Box>
-            <p className="restaurant">{states.profile.name}</p>
-            <p className="date">{states.profile.email}</p>
-            <p className="total">{states.profile.cpf}</p>
-            
-            {states.historicoPedidos}
-          </Box>
+        <HistoryCard/>
       </ContainerHistory>
+      </DivBox>
       <Footer/>
     </Container>
 
