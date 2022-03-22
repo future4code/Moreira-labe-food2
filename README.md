@@ -43,7 +43,7 @@ FeedPage
 ![image](https://user-images.githubusercontent.com/93264333/159299008-7991e817-191d-41ef-89e6-fafa48949f15.png)
 
 Detalhes dos restaurantes
-![image](https://user-images.githubusercontent.com/93264333/159299088-ea03b7dc-6d2b-42a2-b13d-e89b70fb52a2.png)
+![image](https://user-images.githubusercontent.com/92445126/159392625-f9cb3822-3a81-4f2a-a553-62fc26507411.png)
 
 Carrinho
 ![image](https://user-images.githubusercontent.com/92445126/159392051-689673e2-d0c9-4f21-ab28-4ba39679978d.png)
