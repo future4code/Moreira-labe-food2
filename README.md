@@ -20,10 +20,15 @@ O que funciona:
 * Possível ver os detalhes de cada restaurantes;
 * Adicionar ao carrinho;
 * Escolher forma de pagamento;
+* Remover produtos do Carrinho;
+* Histórico de pedidos.
 
 Link do Surge: https://tiny-spade.surge.sh/
 
 Imagens do Projeto:
+Tela Inicial
+![image](https://user-images.githubusercontent.com/92445126/159392314-26911df3-b820-44f7-8847-e25143b6d727.png)
+
 
 Tela Login
 ![image](https://user-images.githubusercontent.com/93264333/159298515-2f75011c-3f86-46b7-b9c5-24e106206d50.png)
@@ -41,16 +46,16 @@ Detalhes dos restaurantes
 ![image](https://user-images.githubusercontent.com/93264333/159299088-ea03b7dc-6d2b-42a2-b13d-e89b70fb52a2.png)
 
 Carrinho
-![image](https://user-images.githubusercontent.com/93264333/159299194-de599567-295d-4c62-a9fd-82b5b9150440.png)
+![image](https://user-images.githubusercontent.com/92445126/159392051-689673e2-d0c9-4f21-ab28-4ba39679978d.png)
 
 Perfil
-![image](https://user-images.githubusercontent.com/93264333/159299263-513b33b3-9641-40b1-a79d-ca7c0e716fa7.png)
+![image](https://user-images.githubusercontent.com/92445126/159392129-10c05722-3627-4656-9ef9-e98e8acfdc63.png)
 
 Editar Cadastro
-![image](https://user-images.githubusercontent.com/93264333/159299341-c8417913-699a-4051-8af6-38677ab9289c.png)
+![image](https://user-images.githubusercontent.com/92445126/159392185-a3c94378-affe-4c50-abec-8c436eca6f07.png)
 
 Editar Endereço
-![image](https://user-images.githubusercontent.com/93264333/159299420-fafaaa3b-d87a-44af-b5ad-1ce9add0f190.png)
+![image](https://user-images.githubusercontent.com/92445126/159392231-35ddafd4-1f26-4f11-83a5-31e2d022a073.png)
 
 
 
