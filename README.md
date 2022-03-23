@@ -24,7 +24,7 @@ O que funciona:
 * Fazero pedido;
 * Histórico de pedidos.
 
-Link do Surge: https://tiny-spade.surge.sh/
+Link do Surge: https://fast-sun.surge.sh
 
 Imagens do Projeto:
 Tela Inicial
