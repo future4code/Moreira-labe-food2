@@ -41,24 +41,12 @@ export default function Feed() {
   const totalPrice =itensCart.reduce((getTotal,valor) => {
     return getTotal + valor.price * valor.quantity}, 0);
 
-    //const totalShipping = (itensCart.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
-  
-  //const frete = (restaurantDetails.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
-
-  // const totalShipping =itensCart.reduce((getTotalShipping,valor) => {
-  //  return  getTotalShipping + valor.shipping}, 0);
-
-
-// console.log(total)
-
  const total = restaurantDetails.map((frete) => {
   return  frete.shipping.toFixed(2)
  },0);
  
 const resultado = totalPrice + Number(total)
-console.log(resultado)
- console.log(total)
-console.log(totalPrice + Number(total))
+
 
   useEffect(() => {
     axios.get(`${BASE_URL}/profile/address`, token)
@@ -102,8 +90,7 @@ console.log(totalPrice + Number(total))
   }
 
   const onClickorder = (event) => {
-    placeOrder() //alteração
-    // JSON.parse(localStorage.getItem("cart", ""))
+    placeOrder() 
     goToFeed(navigate)
   }
 
