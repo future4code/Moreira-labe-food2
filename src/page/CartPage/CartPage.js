@@ -41,12 +41,24 @@ export default function Feed() {
   const totalPrice =itensCart.reduce((getTotal,valor) => {
     return getTotal + valor.price * valor.quantity}, 0);
 
-    const totalShipping = (itensCart.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
+    //const totalShipping = (itensCart.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
   
-  // const totalShipping =restaurantDetails.reduce((getTotalShipping,valor) => {
+  //const frete = (restaurantDetails.length !== 0 && restaurantDetails) ? restaurantDetails.shipping : 0;
+
+  // const totalShipping =itensCart.reduce((getTotalShipping,valor) => {
   //  return  getTotalShipping + valor.shipping}, 0);
 
-   
+
+// console.log(total)
+
+ const total = restaurantDetails.map((frete) => {
+  return  frete.shipping.toFixed(2)
+ },0);
+ 
+const resultado = totalPrice + Number(total)
+console.log(resultado)
+ console.log(total)
+console.log(totalPrice + Number(total))
 
   useEffect(() => {
     axios.get(`${BASE_URL}/profile/address`, token)
@@ -211,26 +223,24 @@ export default function Feed() {
            )))}
         </Ul>
 
-                 
-          <Freight>
-    
-
-          <p>Frete {`R$${totalShipping}.00`}</p>
-          
-      
-          </Freight>
+        {restaurantDetails.map((restaurant => ( 
         
+          <Freight>
+          {itensCart.length !== 0 && (<p>Frete R$ {total}</p>)  || 
+          itensCart.length === 0 && (<p>Frete R$ 0.00</p>) }
+          </Freight>
+         )))}
 
-        <PriceStyle>
-          <p>SUBTOTAL</p>
-         
-          
-          <p className="Total">R${( totalPrice + totalShipping ).toFixed(2)}</p>
-           
-          
 
+          <PriceStyle>
+        <p>SUBTOTAL</p>
+
+        {itensCart.length !== 0 && (<p className="Total">R${(resultado.toFixed(2))}</p>) || 
+        itensCart.length === 0 && (<p className="Total">R$ 0.00</p>)}
+
+          
         </PriceStyle>
-
+      
         <SubTitle>Formas de Pagamento</SubTitle>
         <div
           style={{
