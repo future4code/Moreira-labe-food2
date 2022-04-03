@@ -5,10 +5,10 @@ Integrantes:
 
 Carlise Debona
 Carina Zorzanello
-Eliel 
-Atauan
-Jaime
-Henrique
+Eliel Mariano
+Atauan Lima
+Jaime Epifanio
+Henrique Costa
 
 O que funciona:
 
