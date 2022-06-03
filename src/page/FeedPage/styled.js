@@ -8,10 +8,14 @@ export const Container = styled.div`
     padding-top: 50px;
 `
 export const Img = styled.img`
-    width: 90%;
+    width: 100%;
+    max-height: 40vh;
+    min-height: 30vh;
+    object-fit: center;
+    border-radius: 10px 10px 0 0;
 `
 export const Card = styled.div`
-    margin: 0 auto;
+    margin: 20px auto;
     background: #FFFFFF;
     width: 80%;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -28,13 +32,18 @@ export const Ul = styled.ul`
     margin: 30px 0 100px 0 ;
 `
 export const Li = styled.li`
-    margin: 10px;
+    
     
 `
 export const ContainerList = styled.div`
     
     margin: 10px;
+    overflow-x: scroll;
+    width: 100%;
     
+    li.active {
+        color: #5cb646;
+    }
 `
 export const IconSearch = styled.p`
     position: absolute;

@@ -64,7 +64,7 @@ color: #b8b8b8;
   padding: 12px 16px;
   border-radius: 2px;
   color: black;
-  text-transform: capitalize;
+
 
   }
 `
@@ -84,7 +84,7 @@ export const P = styled.p `
 `
 
 export const Title = styled.div `
-
+  position: absolute;
 
   width: 360px;
   height: 42px;
@@ -99,4 +99,42 @@ export const DivForm = styled.div`
   margin: 58px 0 0;
   padding: 0 16px 8px;
 
+`
+
+export const Header = styled.header`
+  width: 100%;
+  height:60px;
+  border-bottom: 1px solid #d0d0d0;
+  margin-bottom: 20px;
+  display: flex;
+  align-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: black;
+  justify-content: flex-start;
+
+    .title {
+      text-align: center;
+      padding-left: 90px;
+    }
+
+`
+
+export const Buttons = styled.div `
+    color: black;
+    width: 50px;
+    margin-left: 20px;
+    height: 24px;
+    object-fit: contain;
+    position: relative;
+    border: none;
+    background-color: transparent;
+    transition: 0.2s ease;
+    align-self: center; 
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.9s;
+    :hover{
+      background-color: transparent;
+    }
 `

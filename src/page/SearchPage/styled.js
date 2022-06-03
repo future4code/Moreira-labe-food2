@@ -1,4 +1,3 @@
-import { Button } from "@mui/material"
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -8,13 +7,23 @@ export const Container = styled.div`
     width: 100%;
     padding-top: 50px;
 `
+export const Ul = styled.ul`
+    list-style: none;
+    margin: 30px 0 10px 0;
+    box-Shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 8px;
+    width: 90%;
+`
 export const Img = styled.img`
-    width: 100%;
-    height: 20vh;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+
+    width: 90vw;
+    height: 120px;
+    margin-left: -9vw;
+    border-radius: 8px;
+    //object-fit: contain
 `
 export const Card = styled.div`
+    height: 188px;
     margin: 0 auto;
     background: #FFFFFF;
     width: 80%;
@@ -26,11 +35,9 @@ export const Input = styled.input`
     width: 100%;
     border: 1px solid #b6b6b6;
     border-radius: 4px;
+    opacity: 25%;
 `
-export const Ul = styled.ul`
-    list-style: none;
-    margin: 30px 0 100px 0 ;
-`
+
 export const Li = styled.li`
 `
 export const ContainerList = styled.div`
@@ -62,54 +69,36 @@ export const SubTitle = styled.div`
 `
 
 export const MainCard = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    margin: 10px auto; 
-    width: 90%;
-    height: auto;
+    margin: 0 auto;
+    background: #FFFFFF;
+    width: 80%;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 10px;
     position: relative;
 `
 
-export const ContainerModal = styled.div`
-  display: ${({ open }) => (open ? "flex" : "none")};
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  width: 100%;
-  height: 100vh;
-  background:rgba(1,1,1,0.5);
-  position: fixed;
-  top: 0;
-  left: 0; 
-`
-export const ModalSelect = styled.div`
-  width: 20.5rem;
-  height: 13.5rem;
-  margin: 1.688rem 1rem 1.813rem;
-  padding: 2.688rem 1rem 1.938rem 1rem  ;
+export const ButtonAdd = styled.button`
+  width: 90px;
+  height: 31px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: solid 1px #5cb646;
   background-color: #fff;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  p {
-    width: 18.5rem;
-    height: 1.125rem;
-    margin: 0.375rem 0 0 1rem;
-    font-family: "Roboto";
-    font-size: 1rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.39px;
-    text-align: center;
-    color: #c8c8c8;
-  }
+  color: #5cb646;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `
-export const StyledButton = styled(Button) `
-    align-self: flex-end;
+
+export const ButtonDel = styled.button`
+  width: 90px;
+  height: 31px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: solid 1px #e02020;
+  background-color: #fff;
+  color: #e02020;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `

@@ -1,58 +1,69 @@
-import React, {useContext} from 'react'
-
-// import { useState } from 'react';
-import axios from 'axios';
-
-import {Input, DivForm, Container, Form, P, Title} from './styled';
-
-
-// import { useHistory } from 'react-router-dom';
-//import {Link} from 'react-router-dom';
-import {putAdress} from '../../api';
-import useForm from '../../hooks/useForm';
+import React, {useContext, useEffect} from "react"
+import useProtectedPage from "../../hooks/useProtectedPage"
+// import {Link} from 'react-router-dom';
+import GlobalStateContext from "../../global/GlobalStateContext"
 import { useNavigate } from "react-router-dom";
-import Header from '../../components/Header/Header'
+import axios from 'axios';
+import {BASE_URL} from "../../constants/Urls";
+import useForm from '../../hooks/useForm';
 import Button from "@mui/material/Button";
+import {Input, DivForm, Container, Form, P, Title, Header, Butons} from './styled';
+import {IoIosArrowBack} from 'react-icons/io';
+import { goToProfile } from "../../routes/coordinator";
+import { putEditAdress, getAdress } from '../../api';
 
+export default function EditAddressPage() {
+  useProtectedPage()
 
-
-export default function Adress() {
-
-  
   const navigate = useNavigate()
+  const { states, setters } = useContext(GlobalStateContext);
+  const token = { headers: { auth: localStorage.getItem('token') } }
 
-  const [form, onChange, clear] = useForm({
+  const [form, onChange,clear, setForm] = useForm({  
     street: "",
     number: "",
     neighbourhood: "",
     city: "",
     state: "",
-    complement: "",
-})
+    complement: "", 
+  })
+  
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    putAdress(form, clear, navigate)
-  }
+    putEditAdress(form, clear, navigate)
    
-  
-  return(
+  }
+
+  useEffect(() => {
+    getAdress(setForm);
+  }, []);
+
+
+
+  return (
+
+
     <Container>
-    <Header/>
-    <Title><P>Meu Endereço</P></Title>
-      <DivForm>
+    
+    <Header>
+      <Button onClick={()=>{navigate(-1)}}><IoIosArrowBack color="black" fontSize="20"/></Button>
+      <p className="title">Endereço</p>
+    </Header>
+    
+    <DivForm>
       <Form onSubmit={onSubmitForm}>
                         <Input 
                             name="street"
                             label="Logradouro"
                             value={form.street}
-                            placeholder={'Rua/ Av.'}
+                            placeholder="Rua/Avenida"
                             onChange={onChange}
                             required
                             type="text"
                             variant={"outlined"}
                             id="outlined-required"
-                            defaultValue="Rua / Av."
+                            defaultValue="Rua/ Av."
                             fullWidth
                             margin={"dense"}
                             InputLabelProps={{
@@ -64,7 +75,7 @@ export default function Adress() {
                             name="number"
                             label="Número"
                             value={form.number}
-                            placeholder={'Número'}
+                            placeholder="Número"
                             onChange={onChange}
                             required
                             type="number"
@@ -84,7 +95,7 @@ export default function Adress() {
                             label="Complemento"
                             value={form.complement}
                             onChange={onChange}
-                            placeholder={'Ap. /Bloco'}
+                            placeholder="Ap. /Bloco."
                             variant={"outlined"}
                             id="outlined-required"
                             defaultValue="Ap. /Bloco."
@@ -99,7 +110,7 @@ export default function Adress() {
                             name="neighbourhood"
                             label="Bairro"
                             value={form.neighbourhood}
-                            placeholder={'Bairro'}
+                            placeholder="Bairro"
                             onChange={onChange}
                             required
                             variant={"outlined"}
@@ -119,7 +130,7 @@ export default function Adress() {
                             label="Cidade"
                             onChange={onChange}
                             required
-                            placeholder={'Cidade'}
+                            placeholder="Cidade"
                             type="text"
                             variant={"outlined"}
                             id="outlined-required"
@@ -134,7 +145,7 @@ export default function Adress() {
                         <Input 
                             name={"state"}
                             label="Estado"
-                            placeholder={'Estado'}
+                            placeholder="Estado"
                             value={form.state}
                             type={"text"}
                             required
@@ -157,9 +168,8 @@ export default function Adress() {
                                 Salvar
                         </Button>
                     </Form>
-                    </DivForm>
+            </DivForm>
       </Container>
   )
-
-
 }
+
